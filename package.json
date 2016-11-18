@@ -1,0 +1,17 @@
+{
+  "name": "effects-as-data-rpc",
+  "version": "0.0.1",
+  "description": "A simple RPC server using effects as data",
+  "main": "src/rpc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "effects-as-data": "^0.3.0",
+    "express": "^4.14.0",
+    "ramda": "^0.22.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
