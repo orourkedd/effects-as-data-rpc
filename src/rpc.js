@@ -36,12 +36,12 @@ const sendRpcResponse = (res, result) => {
 }
 
 const start = (config) => {
-  const { pipes, port, plugins } = config
+  const { path, pipes, port, plugins } = config
   const app = express()
 
   app.use(json())
 
-  app.post('/rpc', (req, res) => {
+  app.post(path, (req, res) => {
     const h1 = curry(handleRpcResponse)(res)
     routeRpc(pipes, plugins, req.body)
     .then(h1)
