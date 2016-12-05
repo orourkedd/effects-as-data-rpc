@@ -3,9 +3,9 @@ const { curry } = require('ramda')
 const express = require('express')
 const { json } = require('body-parser')
 
-const routeRpc = (pipes, plugins, {fn, payload}) => {
-  const pipe = pipes[fn]
-  if (!pipe) {
+const routeRpc = (functions, handlers, {fn, payload}) => {
+  const f = functions[fn]
+  if (!f) {
     return Promise.resolve({
       success: false,
       error: {
@@ -14,13 +14,7 @@ const routeRpc = (pipes, plugins, {fn, payload}) => {
     })
   }
 
-  const state = {
-    payload,
-    context: {},
-    errors: {}
-  }
-
-  return run(plugins, pipe, state)
+  return run(handlers, f, payload)
 }
 
 const handleRpcResponse = (res, result) => {
@@ -36,14 +30,14 @@ const sendRpcResponse = (res, result) => {
 }
 
 const start = (config) => {
-  const { path, pipes, port, plugins } = config
+  const { path, functions, port, handlers } = config
   const app = express()
 
   app.use(json())
 
   app.post(path, (req, res) => {
     const h1 = curry(handleRpcResponse)(res)
-    routeRpc(pipes, plugins, req.body)
+    routeRpc(functions, handlers, req.body)
     .then(h1)
     .catch(console.error)
   })
