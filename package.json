@@ -1,20 +1,30 @@
 {
   "name": "effects-as-data-rpc",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "A simple RPC server using effects as data",
-  "main": "src/rpc.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "effects-as-data": "^1.4.12",
-    "express": "^4.14.0",
-    "ramda": "^0.22.1"
+    "effects-as-data": "^1.7.0",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-router": "^7.0.1",
+    "ramda": "^0.23.0",
+    "simple-protocol-http": "^0.13.0"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^3.1.2"
+    "jest": "^18.1.0"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "beforeEach",
+      "afterEach"
+    ]
   }
 }
