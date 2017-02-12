@@ -1,3 +1,4 @@
+const { normalizeToSuccess } = require('simple-protocol-helpers')
 const { run, failure } = require('effects-as-data')
 const Koa = require('koa')
 const Router = require('koa-router')
@@ -6,7 +7,7 @@ const bodyParser = require('koa-bodyparser')
 const routeRpc = (functions, handlers, {fn, payload}) => {
   const f = functions[fn]
   if (!f) return Promise.resolve(failure(`${fn} is not a registered function.`))
-  return run(handlers, f, payload)
+  return run(handlers, f, { payload })
 }
 
 const init = (config) => {
@@ -20,7 +21,7 @@ const init = (config) => {
   router.post(path, (ctx) => {
     return routeRpc(functions, handlers, ctx.request.body)
     .then((r) => {
-      ctx.body = r
+      ctx.body = normalizeToSuccess(r)
     })
     .catch(console.error)
   })

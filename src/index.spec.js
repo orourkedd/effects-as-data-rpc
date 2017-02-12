@@ -6,11 +6,11 @@ const config = {
   path: '/rpc',
   functions,
   handlers,
-  port: 9123,
+  port: 9124,
   test: true
 }
 const { start, stop } = init(config)
-const rpc = util.rpc('http://localhost:9123/rpc')
+const rpc = util.rpc('http://localhost:9124/rpc')
 const { deepEqual } = require('assert')
 
 describe('index', () => {

@@ -12,6 +12,7 @@
     "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.0.1",
     "ramda": "^0.23.0",
+    "simple-protocol-helpers": "^0.2.0",
     "simple-protocol-http": "^0.13.0"
   },
   "author": "",
