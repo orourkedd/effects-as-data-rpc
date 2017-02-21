@@ -1,4 +1,4 @@
-const { normalizeToSuccess } = require('simple-protocol-helpers')
+const { normalizeToSuccess, normalizeToFailure } = require('simple-protocol-helpers')
 const { run, failure } = require('effects-as-data')
 const Koa = require('koa')
 const Router = require('koa-router')
@@ -23,7 +23,9 @@ const init = (config) => {
     .then((r) => {
       ctx.body = normalizeToSuccess(r)
     })
-    .catch(console.error)
+    .catch((err) => {
+      ctx.body = normalizeToFailure(err)
+    })
   })
 
   app
