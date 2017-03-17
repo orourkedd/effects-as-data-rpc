@@ -5,8 +5,8 @@ const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
 
 const routeRpc = (functions, handlers, body) => {
-  const f = functions[fn]
-  if (!f) return Promise.resolve(failure(`${fn} is not a registered function.`))
+  const f = functions[body.fn]
+  if (!f) return Promise.resolve(failure(`${body.fn} is not a registered function.`))
   return run(handlers, f, body)
 }
 
