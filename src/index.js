@@ -4,10 +4,10 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
 
-const routeRpc = (functions, handlers, { fn, payload, token }) => {
+const routeRpc = (functions, handlers, body) => {
   const f = functions[fn]
   if (!f) return Promise.resolve(failure(`${fn} is not a registered function.`))
-  return run(handlers, f, { payload, token })
+  return run(handlers, f, body)
 }
 
 const init = (config) => {
