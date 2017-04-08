@@ -3,6 +3,7 @@ const { run, failure } = require('effects-as-data')
 const Koa = require('koa')
 const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
+const { forEach } = require('ramda')
 
 const routeRpc = (functions, handlers, body) => {
   const f = functions[body.fn]
@@ -15,6 +16,8 @@ const init = (config) => {
   const app = new Koa()
 
   app.use(bodyParser())
+
+  if (config.middleware) forEach(app.use.bind(app), config.middleware)
 
   const router = new Router()
 
