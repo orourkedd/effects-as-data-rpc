@@ -21,7 +21,7 @@ const init = config => {
   const { path, functions, port, handlers } = config;
   const app = new Koa();
 
-  app.use(bodyParser());
+  app.use(bodyParser({ jsonLimit: '50mb' }));
 
   if (config.middleware) forEach(app.use.bind(app), config.middleware);
 
