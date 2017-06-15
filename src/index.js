@@ -30,7 +30,8 @@ const init = config => {
 
   router.post(path, ctx => {
     return routeRpc(functions, handlers, ctx.request.body, {
-      onFailure: config.onFailure
+      onFailure: config.onFailure,
+      onActionComplete: config.onActionComplete
     })
       .then(r => {
         ctx.body = normalizeToSuccess(r);
