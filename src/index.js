@@ -13,7 +13,8 @@ const routeRpc = (functions, handlers, body, config = {}) => {
   if (!f)
     return Promise.resolve(failure(`${body.fn} is not a registered function.`));
   return run(handlers, f, body, {
-    onFailure: config.onFailure || console.error
+    onFailure: config.onFailure || console.error,
+    onActionComplete: config.onActionComplete || console.log
   });
 };
 
