@@ -7,7 +7,7 @@ const Router = require('koa-router')
 
 const router = new Router()
 
-router.get('/health-check', (ctx) => {
+router.get('/health-check', ctx => {
   ctx.body = 'ok'
 })
 
@@ -28,21 +28,21 @@ describe('index', () => {
   afterAll(stop)
 
   it('should do an rpc', () => {
-    return rpc('test').then((r) => {
+    return rpc('test').then(r => {
       deepEqual(r.success, true)
       deepEqual(r.payload, { foo: 'bar' })
     })
   })
 
   it('should return rpc failures', () => {
-    return rpc('testFailure').then((r) => {
+    return rpc('testFailure').then(r => {
       deepEqual(r.success, false)
       deepEqual(r.error, { message: 'oops!' })
     })
   })
 
   it('should use middleware', () => {
-    return get('http://localhost:9124/health-check').then((r) => {
+    return get('http://localhost:9124/health-check').then(r => {
       deepEqual(r.success, true)
       deepEqual(r.payload, 'ok')
     })

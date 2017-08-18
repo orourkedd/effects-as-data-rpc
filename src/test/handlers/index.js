@@ -1,8 +1,8 @@
-function test () {
+function test() {
   return { foo: 'bar' }
 }
 
-function testFailure () {
+function testFailure() {
   return Promise.reject('oops!')
 }
 
