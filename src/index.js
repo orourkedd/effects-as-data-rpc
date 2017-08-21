@@ -12,6 +12,7 @@ const routeRpc = (functions, handlers, body, config = {}) => {
   const f = functions[body.fn]
   if (!f)
     return Promise.resolve(failure(`${body.fn} is not a registered function.`))
+  config.name = body.fn
   return call(config, handlers, f, body)
 }
 
