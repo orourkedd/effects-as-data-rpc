@@ -26,10 +26,10 @@ const init = config => {
   const router = new Router()
 
   router.post(path, ctx => {
-    return routeRpc(functions, handlers, ctx.request.body, {
-      onFailure: config.onFailure,
-      onActionComplete: config.onActionComplete
-    })
+    const eadConfig =
+      typeof config.config === 'function' ? config.config(ctx) : config.config
+
+    return routeRpc(functions, handlers, ctx.request.body, eadConfig || {})
       .then(r => {
         ctx.body = normalizeToSuccess(r)
       })
