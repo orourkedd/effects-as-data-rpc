@@ -1,6 +1,7 @@
 const {
   normalizeToSuccess,
-  normalizeToFailure
+  normalizeToFailure,
+  failure
 } = require('simple-protocol-helpers')
 const { call } = require('effects-as-data')
 const Koa = require('koa')

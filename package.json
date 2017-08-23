@@ -1,6 +1,6 @@
 {
   "name": "effects-as-data-rpc",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A simple RPC server using effects as data",
   "main": "src/index.js",
   "scripts": {
