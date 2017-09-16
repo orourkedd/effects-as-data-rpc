@@ -1,13 +1,14 @@
 {
   "name": "effects-as-data-rpc",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "A simple RPC server using effects as data",
   "main": "src/index.js",
   "scripts": {
     "test": "jest"
   },
   "dependencies": {
-    "effects-as-data": "^2.12.0",
+    "effects-as-data": "^2.14.6",
+    "effects-as-data-universal": "^4.2.0",
     "koa": "^2.0.0",
     "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.0.1",
