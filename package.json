@@ -1,6 +1,6 @@
 {
   "name": "effects-as-data-rpc",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "A simple RPC server using effects as data",
   "main": "src/index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "koa-router": "^7.0.1",
     "ramda": "^0.23.0",
     "simple-protocol-helpers": "^0.2.0",
-    "simple-protocol-http": "^0.13.0"
+    "simple-protocol-http": "^0.13.0",
+    "uuid": "^3.1.0"
   },
   "author": "",
   "license": "ISC",

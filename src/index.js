@@ -8,18 +8,16 @@ const Koa = require("koa");
 const Router = require("koa-router");
 const bodyParser = require("koa-bodyparser");
 const { forEach, merge } = require("ramda");
+const uuid = require("uuid");
 
 const routeRpc = (functions, handlers, body, config = {}) => {
   const f = functions[body.fn];
   if (!f)
     return Promise.resolve(failure(`${body.fn} is not a registered function.`));
   const existingMeta = (body || {}).meta || {};
-  config.meta = merge(
-    {
-      cid: body.cid || config.cid
-    },
-    existingMeta
-  );
+  const cid = body.cid || uuid.v4();
+  config.meta = merge({ cid }, existingMeta);
+  config.cid = cid;
   return call(config, handlers, f, body);
 };
 
