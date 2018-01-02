@@ -7,13 +7,19 @@ const { call } = require("effects-as-data");
 const Koa = require("koa");
 const Router = require("koa-router");
 const bodyParser = require("koa-bodyparser");
-const { forEach } = require("ramda");
+const { forEach, merge } = require("ramda");
 
 const routeRpc = (functions, handlers, body, config = {}) => {
   const f = functions[body.fn];
   if (!f)
     return Promise.resolve(failure(`${body.fn} is not a registered function.`));
-  config.meta = (body || {}).meta || {};
+  const existingMeta = (body || {}).meta || {};
+  config.meta = merge(
+    {
+      cid: body.cid || config.cid
+    },
+    existingMeta
+  );
   return call(config, handlers, f, body);
 };
 
