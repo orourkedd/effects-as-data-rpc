@@ -1,12 +1,12 @@
 function test() {
-  return { foo: 'bar' }
+  return { foo: "bar" };
 }
 
 function testFailure() {
-  return Promise.reject('oops!')
+  return Promise.reject("oops!");
 }
 
 module.exports = {
   test,
   testFailure
-}
+};
