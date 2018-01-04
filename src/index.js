@@ -16,9 +16,12 @@ const routeRpc = (functions, handlers, body, config = {}) => {
     return Promise.resolve(failure(`${body.fn} is not a registered function.`));
   const existingMeta = (body || {}).meta || {};
   const cid = config.cid || existingMeta.cid || uuid.v4();
+  const test =
+    config.test || existingMeta.test || body.test || (body.payload || {}).test;
   const config2 = merge(config, {
     cid,
-    meta: merge(existingMeta, { cid })
+    test,
+    meta: merge(existingMeta, { cid, test })
   });
   return call(config2, handlers, f, body);
 };
